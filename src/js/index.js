@@ -1,7 +1,14 @@
-import myFunction, { multiply } from "./myModule";
+import shop from "./shop";
+import product from "./product";
 
-myFunction();
+document.addEventListener("DOMContentLoaded", function (event) {
+  const currentPath = window.location.pathname;
 
-const result = multiply(2, 5);
+  console.log(currentPath);
 
-console.log(result);
+  if (currentPath === "/shop/index.html") {
+    shop();
+  } else if (currentPath === "/product/index.html") {
+    product();
+  }
+});
