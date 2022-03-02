@@ -1,5 +1,6 @@
 import products from "./products.json";
 import productImageFile from "../images/product.jpg";
+import { categoryIcons } from "./icons";
 
 function createProductElement() {
   const productSection = document.querySelector(".product-section");
@@ -13,13 +14,27 @@ function createProductElement() {
     console.log(currentProduct.id, id);
     return currentProduct.id === id;
   })[0];
-  console.log(product);
+
+  const { categories } = product;
 
   const productsHtml = `
       <div class="product">
         <img class="product-img" src="${productImageFile}">
-        <a class="product-title" href="/product/index.html?id=${product.id}">${product.productName}</a>
+        <a class="product-title" href="/product/index.html?id=${product.id}">${
+    product.productName
+  }</a>
         <div class="product-price">${product.price}</div>
+        <div class="product-categories">
+          ${categories
+            .map(
+              (category) => `
+            <div>
+              <img src="${categoryIcons[category]}">
+            </div>
+            `
+            )
+            .join("")}
+        </div>
       </div>
     `;
 
